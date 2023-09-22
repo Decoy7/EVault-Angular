@@ -8,10 +8,13 @@ import { LoginService } from 'src/services/login.service';
 })
 export class LoginComponent {
 
+  username: string = '';
+  password: string = '';
+
   constructor(private loginService: LoginService){}
 
   Login(){
-    this.loginService.authenticate("admin", "admin").subscribe({
+    this.loginService.authenticate(this.username,this.password).subscribe({
       next: data=>{
         console.log(data);
         

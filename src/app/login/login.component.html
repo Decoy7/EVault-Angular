@@ -1,5 +1,21 @@
-<p>login works!</p>
-
-
-
-<button (click)="Login()">Login</button>
+<div class="login-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+  
+      <mat-card-content>
+        <form (submit)="Login()">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Username" value={{username}}  name="username" required>
+          </mat-form-field>
+  
+          <mat-form-field class="full-width">
+            <input matInput type="password" placeholder="Password" value={{password}} name="password" required>
+          </mat-form-field>
+  
+          <button mat-raised-button color="primary" type="submit">Login</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
