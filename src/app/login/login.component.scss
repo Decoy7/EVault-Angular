@@ -1,0 +1,20 @@
+mat-card{
+    text-align: center;
+    background-color: rgb(218, 202, 202);
+    margin: 20px;
+}
+
+mat-card-title{
+    margin-bottom: 20px;
+}
+
+mat-card-content {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+mat-card-content button{
+    max-width: 150px;
+}
