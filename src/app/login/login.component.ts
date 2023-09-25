@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoginService } from 'src/services/login.service';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,10 @@ export class LoginComponent {
     this.password = this.loginCredentials.get('password')?.value;
     this.loginService.authenticate(this.username,this.password).subscribe({
       next: data=>{
-        localStorage.setItem('user', data.username);
+        const user = data[0]
+        localStorage.setItem('username', user.username);
+        console.log(localStorage.getItem('username'))
+        localStorage.setItem('employee_id', user.ots_Adeies_Employee_Id);
         this.router?.navigateByUrl('/home');
       },
       error: err=>{
