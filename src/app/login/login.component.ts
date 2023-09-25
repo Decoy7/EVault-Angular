@@ -26,7 +26,7 @@ export class LoginComponent {
     this.loginService.authenticate(this.username,this.password).subscribe({
       next: data=>{
         localStorage.setItem('user', data.username);
-        this.router?.navigateByUrl('');
+        this.router?.navigateByUrl('/home');
       },
       error: err=>{
         console.log(err);
