@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { LoginService } from 'src/services/login.service';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import { User } from '../models/user';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +10,7 @@ import { User } from '../models/user';
 })
 export class LoginComponent {
 
+  isLoginButtonDisabled: boolean = true;
   username: string = '';
   password: string = '';
   loginCredentials: FormGroup;
@@ -19,6 +19,10 @@ export class LoginComponent {
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
     })
+
+    this.loginCredentials.valueChanges.subscribe(() => {
+      this.updateLoginButtonState();
+    });
   }
 
   Login(){
@@ -36,5 +40,9 @@ export class LoginComponent {
         console.log(err);
       }
     })
+  }
+
+  updateLoginButtonState(){
+    this.isLoginButtonDisabled = this.loginCredentials.invalid;
   }
 }
