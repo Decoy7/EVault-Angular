@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { LoginService } from 'src/services/login.service';
+import { AuthenticationService } from 'src/services/authentication.service';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {AuthResponse} from "../models/authResponse";
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,8 @@ import {Router} from "@angular/router";
 export class LoginComponent {
 
   isLoginButtonDisabled: boolean = true;
-  username: string = '';
-  password: string = '';
   loginCredentials: FormGroup;
-  constructor(private loginService: LoginService, private router: Router){
+  constructor(private authService: AuthenticationService, private router: Router){
     this.loginCredentials = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
@@ -25,24 +24,26 @@ export class LoginComponent {
     });
   }
 
-  Login(){
-    this.username = this.loginCredentials.get('username')?.value;
-    this.password = this.loginCredentials.get('password')?.value;
-    this.loginService.authenticate(this.username,this.password).subscribe({
-      next: data=>{
-        const user = data[0]
-        localStorage.setItem('username', user.username);
-        console.log(localStorage.getItem('username'))
-        localStorage.setItem('employee_id', user.ots_Adeies_Employee_Id);
+  Login():void{
+    const username = this.loginCredentials.get('username')!.value;
+    const password = this.loginCredentials.get('password')!.value;
+    this.authService.login(username, password).subscribe({
+      next: (data:AuthResponse):void=>{
+        localStorage.setItem('access_token', data.access_token);
+        localStorage.setItem('refresh_token', data.refresh_token);
+        localStorage.setItem('expires_in', data.expires_in);
+        localStorage.setItem('refresh_expires_in', data.refresh_expires_in);
+        localStorage.setItem('token_type', data.token_type);
+
         this.router?.navigateByUrl('/home');
       },
-      error: err=>{
-        console.log(err);
+      error: (err):void=>{
+        console.log(err);// needs toast for error on login here
       }
-    })
+    });
   }
 
-  updateLoginButtonState(){
+  updateLoginButtonState():void{
     this.isLoginButtonDisabled = this.loginCredentials.invalid;
   }
 }
