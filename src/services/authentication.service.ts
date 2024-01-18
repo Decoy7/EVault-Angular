@@ -1,7 +1,7 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/models/user';
+import { AuthResponse } from 'src/app/models/authResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class AuthenticationService {
   logoutURL: string = "http://localhost:8080/realms/Open5HR/protocol/openid-connect/logout";
   constructor(private http: HttpClient) {}
 
-   login(username:string, password:string):Observable<User>{
+   login(username:string, password:string):Observable<AuthResponse>{
      const body:URLSearchParams = new URLSearchParams();
      body.set("grant_type","password");
      body.set("client_id","frontend");
@@ -23,7 +23,7 @@ export class AuthenticationService {
          .set('Content-Type', 'application/x-www-form-urlencoded'),
          responseType: 'json' as 'json'
      };
-    return (this.http.post<User>(this.authURL, body.toString(), options));
+    return (this.http.post<AuthResponse>(this.authURL, body.toString(), options));
   }
 
   logout(){
