@@ -6,6 +6,11 @@ mat-card{
 
 mat-card-title{
     margin-bottom: 20px;
+  user-select: none;
+}
+
+mat-card-title:hover{
+  cursor: default;
 }
 
 mat-card-content {
@@ -16,5 +21,32 @@ mat-card-content {
 }
 
 mat-card-content button{
-    max-width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 200vh;
+}
+
+@keyframes rainbow {
+  0% { color: #ff0000; } /* Red */
+  16.666% { color: #ff9900; } /* Orange */
+  33.333% { color: #ffff00; } /* Yellow */
+  50% { color: #00ff00; } /* Green */
+  66.666% { color: #0000ff; } /* Blue */
+  83.333% { color: #9900ff; } /* Purple */
+  100% { color: #ff0000; } /* Back to Red */
+}
+
+#rainbow-text {
+  background-image: linear-gradient(to right, #ff0000, #ff9900, #ffff00, #00ff00, #0000ff, #9900ff, #ff0000);
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  animation: rainbow 4s linear infinite;
 }
