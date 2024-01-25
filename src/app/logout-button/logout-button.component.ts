@@ -14,10 +14,11 @@ export class LogoutButtonComponent {
     this.authService.logout()
       .subscribe({
         next: value => {
-          // console.log(value);
+          console.log(value);
+          // Needs a toast here for logging out successfully
         },
         error:err => {
-          // console.log(err)
+          console.log(err)
           // Needs a toast here for error logging out
         }
       })
