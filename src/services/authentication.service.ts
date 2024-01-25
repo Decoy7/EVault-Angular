@@ -7,8 +7,8 @@ import { AuthResponse } from 'src/models/authResponse';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  authURL: string = "http://localhost:8080/realms/Open5HR/protocol/openid-connect/token";
-  logoutURL: string = "http://localhost:8080/realms/Open5HR/protocol/openid-connect/logout";
+  authURL = "http://localhost:8080/realms/Open5HR/protocol/openid-connect/token";
+  logoutURL = "http://localhost:8080/realms/Open5HR/protocol/openid-connect/logout";
   constructor(private http: HttpClient) {}
 
    login(username:string, password:string):Observable<AuthResponse>{
@@ -21,7 +21,7 @@ export class AuthenticationService {
      const options = {
        headers: new HttpHeaders()
          .set('Content-Type', 'application/x-www-form-urlencoded'),
-         responseType: 'json' as 'json'
+         responseType: 'json' as const
      };
     return (this.http.post<AuthResponse>(this.authURL, body.toString(), options));
   }
@@ -33,10 +33,10 @@ export class AuthenticationService {
     body.set("client_id","frontend");
     body.set("refresh_token",refresh_token);
 
-    let options = {
+    const options = {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded'),
-      responseType: 'json' as 'json'
+      responseType: 'json' as const
     };
 
     localStorage.clear();
