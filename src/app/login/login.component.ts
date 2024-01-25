@@ -11,7 +11,7 @@ import {AuthResponse} from "../../models/authResponse";
 })
 export class LoginComponent {
 
-  isLoginButtonDisabled: boolean = true;
+  isLoginButtonDisabled = true;
   loginCredentials: FormGroup;
   constructor(private authService: AuthenticationService, private router: Router){
     this.loginCredentials = new FormGroup({
