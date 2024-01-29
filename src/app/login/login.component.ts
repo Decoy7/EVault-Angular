@@ -3,6 +3,7 @@ import { AuthenticationService } from 'src/services/authentication.service';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthResponse} from "../../models/authResponse";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent {
 
   isLoginButtonDisabled = true;
   loginCredentials: FormGroup;
-  constructor(private authService: AuthenticationService, private router: Router){
+  constructor(private authService: AuthenticationService, private router: Router, private toast: ToastrService){
     this.loginCredentials = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
@@ -37,8 +38,12 @@ export class LoginComponent {
 
         this.router?.navigateByUrl('/home');
       },
-      error: (err):void=>{
-        console.log(err);// needs toast for error on login here
+      error: ():void=>{
+        this.toast.error('Invalid credentials', 'Error', {
+          timeOut: 3000,
+          progressBar: true,
+          positionClass: 'toast-top-right',
+        });
       }
     });
   }
