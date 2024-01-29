@@ -1,4 +1,4 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthResponse } from 'src/models/authResponse';
@@ -26,7 +26,7 @@ export class AuthenticationService {
     return (this.http.post<AuthResponse>(this.authURL, body.toString(), options));
   }
 
-  logout(){
+  logout():Observable<HttpResponse<any>>{
     const body:URLSearchParams = new URLSearchParams();
     const refresh_token = localStorage.getItem("refresh_token")!;
 
@@ -36,6 +36,7 @@ export class AuthenticationService {
     const options = {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded'),
+      observe: 'response' as const,
       responseType: 'json' as const
     };
 
