@@ -7,16 +7,16 @@
       <mat-card-content>
 
           <mat-form-field class="full-width">
-            <input matInput formControlName="username">
+            <input matInput formControlName="username" (keyup.enter)="Login()">
             <mat-error *ngIf="loginCredentials.get('username')?.hasError('required')">Το πεδίο είναι υποχρεωτικό.</mat-error>
           </mat-form-field>
 
           <mat-form-field class="full-width">
-            <input matInput formControlName="password">
+            <input matInput formControlName="password" type="password" (keyup.enter)="Login()">
             <mat-error *ngIf="loginCredentials.get('password')?.hasError('required')">Το πεδίο είναι υποχρεωτικό.</mat-error>
           </mat-form-field>
 
-          <button mat-raised-button color="primary" (click)="Login()" [disabled]="isLoginButtonDisabled">Login</button>
+          <button mat-raised-button color="primary" (click)="Login()" [disabled]="isLoginButtonDisabled">Σύνδεση</button>
       </mat-card-content>
     </mat-card>
 </div>
