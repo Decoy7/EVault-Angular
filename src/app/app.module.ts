@@ -15,6 +15,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import { LogoutButtonComponent } from './logout-button/logout-button.component';
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { LogoutButtonComponent } from './logout-button/logout-button.component';
     RouterModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     MatCardModule,
     MatFormFieldModule,
     FormsModule,
