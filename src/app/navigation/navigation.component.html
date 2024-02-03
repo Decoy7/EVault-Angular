@@ -1,0 +1,34 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar id="menu-open"><span>Menu</span><mat-icon aria-label="close menu panel">arrow_left</mat-icon></mat-toolbar>
+<!--    CLOSE TOOLBAR WHEN CLICKED ARROW LEFT IS CLICKED-->
+    <mat-nav-list>
+      <a mat-list-item href="/home"><mat-icon aria-label="Dashboard">home</mat-icon>Dashboard</a>
+      <a mat-list-item href="/home"><mat-icon aria-label="Leave request">add_circle</mat-icon>Leave Request</a>
+      <a mat-list-item href="/home"><mat-icon aria-label="Leave request history">history</mat-icon>Leave Request History</a>
+      <a mat-list-item href="/home"><mat-icon aria-label="Leave balance">balance</mat-icon>Leave Balance</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span id="title">Open5HR</span>
+      <div class="logout-and-dark-mode">
+        <mat-icon class="material-symbols-outlined">dark_mode</mat-icon>
+        <app-logout-button id="logout-button"></app-logout-button>
+      </div>
+    </mat-toolbar>
+    <app-dashboard></app-dashboard>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
