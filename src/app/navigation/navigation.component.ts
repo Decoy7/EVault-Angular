@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {ToastrService} from "ngx-toastr";
+import {MatSidenav} from "@angular/material/sidenav";
 
 @Component({
   selector: 'app-navigation',
@@ -11,6 +12,7 @@ import {ToastrService} from "ngx-toastr";
 })
 export class NavigationComponent {
   private breakpointObserver = inject(BreakpointObserver);
+  @ViewChild('drawer') drawer: MatSidenav | undefined;
   isLightMode = false;
 
   constructor(private toast:ToastrService) {}
@@ -34,5 +36,9 @@ export class NavigationComponent {
       });
     }
     this.isLightMode = !this.isLightMode;
+  }
+
+  handleSideNav() {
+    this.drawer?.toggle();
   }
 }
