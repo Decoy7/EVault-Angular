@@ -24,6 +24,7 @@ import { MatListModule } from '@angular/material/list';
 import {MatGridListModule} from "@angular/material/grid-list";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatRippleModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,10 @@ import { MatMenuModule } from '@angular/material/menu';
     RouterModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+        preventDuplicates: true,
+      }
+    ),
     MatCardModule,
     MatFormFieldModule,
     FormsModule,
@@ -52,7 +56,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatIconModule,
     MatListModule,
     MatGridListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
