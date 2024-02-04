@@ -24,8 +24,9 @@
       </button>
       <span id="title">Open5HR</span>
       <div class="logout-and-dark-mode">
-        <mat-icon class="material-symbols-outlined">dark_mode</mat-icon>
-        <app-logout-button id="logout-button"></app-logout-button>
+        <mat-icon class="dark-mode" matRipple (click)="changeTheme()" *ngIf="!isLightMode">dark_mode</mat-icon>
+        <mat-icon class="light-mode" matRipple (click)="changeTheme()" *ngIf="isLightMode">light_mode</mat-icon>
+        <app-logout-button></app-logout-button>
       </div>
     </mat-toolbar>
     <app-dashboard></app-dashboard>
