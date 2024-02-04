@@ -11,7 +11,7 @@ import {ToastrService} from "ngx-toastr";
 })
 export class NavigationComponent {
   private breakpointObserver = inject(BreakpointObserver);
-  isLightMode: boolean = false;
+  isLightMode = false;
 
   constructor(private toast:ToastrService) {}
 
