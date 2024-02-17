@@ -24,6 +24,17 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatRippleModule} from "@angular/material/core";
+import {LeaveRequestTableCardComponent} from "./leave-request-table-card/leave-request-table-card.component";
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef, MatHeaderRow,
+  MatHeaderRowDef, MatRow, MatRowDef,
+  MatTable
+} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -32,7 +43,9 @@ import {MatRippleModule} from "@angular/material/core";
     LandingComponent,
     LogoutButtonComponent,
     NavigationComponent,
+    LeaveRequestTableCardComponent,
     DashboardComponent
+
   ],
   imports: [
     BrowserModule,
@@ -56,7 +69,18 @@ import {MatRippleModule} from "@angular/material/core";
     MatListModule,
     MatGridListModule,
     MatMenuModule,
-    MatRippleModule
+    MatRippleModule,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCell,
+    MatCellDef,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
   ],
   providers: [],
   bootstrap: [AppComponent]

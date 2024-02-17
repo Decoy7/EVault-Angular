@@ -1,24 +1,22 @@
 <div class="grid-container">
   <h1 class="mat-h1">My Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
+  <mat-grid-list cols="4" rowHeight="500px">
+
+    <mat-grid-tile [colspan]="3" [rowspan]="1">
+      <span>Pending Leave Requests Table Here</span>
     </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <span>Your Leave Balance Here</span>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <span>Your subordinates here // maybe on leave or present toggle option here</span>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+      <span>Current date and maybe some other info like temperature or something like that</span>
+    </mat-grid-tile>
+
   </mat-grid-list>
 </div>
